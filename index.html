@@ -1,13 +1,398 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bright Express Logistics LLC</title>
-  </head>
-  <body>
-    <div id="root"></div>
 
-    <script type="module" src="/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bright Express Logistics LLC - CDL Driving Jobs</title>
+  <meta name="description" content="Bright Express Logistics LLC offers Class A CDL driving jobs, modern equipment, and recruiter support." />
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f3f3f3;
+      color: #111827;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(22,35,61,0.95);
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+      flex-wrap: wrap;
+    }
+    .logo-main {
+      font-size: 32px;
+      font-weight: 900;
+      color: #ef4444;
+      line-height: 1;
+    }
+    .logo-sub {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-top: 4px;
+    }
+    .nav {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav a {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: white;
+    }
+    .btn {
+      display: inline-block;
+      padding: 16px 26px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-red {
+      background: #dc2626;
+      color: white;
+      border-color: #dc2626;
+    }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border-color: white;
+    }
+    .hero {
+      min-height: 100vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding-top: 96px;
+      background:
+        linear-gradient(rgba(7,12,26,0.78), rgba(7,12,26,0.78)),
+        url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+      padding: 40px 0 80px;
+    }
+    .eyebrow {
+      color: #f87171;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 64px;
+      line-height: 1.05;
+      font-weight: 900;
+    }
+    .hero-sub {
+      margin-top: 26px;
+      font-size: 22px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.9);
+    }
+    .feature-list {
+      margin-top: 24px;
+      font-size: 20px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.94);
+    }
+    .feature-list div { margin-bottom: 8px; }
+    .button-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+    .card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(8px);
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 30px;
+      color: white;
+    }
+    .card p {
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+    input, select, textarea {
+      width: 100%;
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 15px;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.6); }
+    select option { color: black; }
+    section { padding: 90px 0; }
+    .light { background: #f3f3f3; }
+    .white { background: white; }
+    .dark { background: #0b0b0b; color: white; }
+    .section-title {
+      margin: 0;
+      font-size: 56px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+    .section-text {
+      margin-top: 24px;
+      font-size: 24px;
+      line-height: 1.7;
+      color: #444;
+    }
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px 28px;
+      margin-top: 56px;
+    }
+    .equipment-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .icon-circle {
+      width: 74px;
+      height: 74px;
+      border-radius: 999px;
+      background: black;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+    .equipment-item strong {
+      font-size: 24px;
+      line-height: 1.15;
+    }
+    .center { text-align: center; }
+    .banner {
+      margin-top: 54px;
+      min-height: 440px;
+      border-radius: 28px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 40px;
+      background:
+        linear-gradient(rgba(22,35,61,0.56), rgba(22,35,61,0.56)),
+        url('https://images.unsplash.com/photo-1502744688674-c619d1586c9e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      color: white;
+    }
+    .banner small {
+      color: #fca5a5;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .banner h3 {
+      margin: 16px 0 0;
+      font-size: 54px;
+      line-height: 1.04;
+      font-weight: 900;
+    }
+    .banner p {
+      max-width: 720px;
+      font-size: 21px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.82);
+    }
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .jobs-grid .section-text { color: rgba(255,255,255,0.78); }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .footer {
+      background: #16233d;
+      color: white;
+      padding: 26px 0;
+      text-align: center;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+    @media (max-width: 980px) {
+      .hero-grid, .jobs-grid, .equipment-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 46px; }
+      .section-title { font-size: 42px; }
+      .banner h3 { font-size: 40px; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(1200px, calc(100% - 28px)); }
+      .header-inner { justify-content: center; }
+      .nav { justify-content: center; }
+      .form-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 38px; }
+      .section-title { font-size: 34px; }
+      .section-text { font-size: 20px; }
+      .feature-list { font-size: 18px; }
+      .btn { width: 100%; text-align: center; }
+      .button-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div>
+        <div class="logo-main">Bright Express</div>
+        <div class="logo-sub">Logistics LLC</div>
+      </div>
+      <nav class="nav">
+        <a href="#jobs">Jobs</a>
+        <a href="#equipment">Services</a>
+        <a href="#contact">Call Me</a>
+        <a href="#about">Track Load</a>
+      </nav>
+      <a class="btn btn-red" href="#contact">Apply Now</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Bright Express Logistics LLC</div>
+        <h1>Bright Express Logistics LLC – Class A CDL Driving Jobs</h1>
+        <div class="hero-sub">Our professional CDL Flatbed Drivers enjoy</div>
+        <div class="feature-list">
+          <div>— Great pay packages to build your life around</div>
+          <div>— Modern equipment to keep you safe and comfortable</div>
+          <div>— A truck driving career path to grow with</div>
+          <div>— A truck purchasing program to take your destiny into your hands</div>
+        </div>
+        <div class="button-row">
+          <a class="btn btn-red" href="#jobs">Find CDL Jobs</a>
+          <a class="btn btn-outline" href="#contact">Contact a Recruiter</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Start Your Application</h2>
+        <p>Join a fleet that invests in drivers, equipment, and long-term success.</p>
+        <input placeholder="Full name" />
+        <input placeholder="Phone number" />
+        <input placeholder="Email address" />
+        <select>
+          <option>Experience level</option>
+          <option>New CDL holder</option>
+          <option>1–2 years</option>
+          <option>3+ years</option>
+        </select>
+        <a class="btn btn-red" style="display:block; text-align:center; margin-top:14px;" href="#contact">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="equipment" class="light">
+    <div class="container">
+      <h2 class="section-title">Our Equipment Commitment</h2>
+      <div class="section-text">
+        It’s more than a truck, it’s your livelihood and your home on the road. That’s why we take our equipment so seriously. Our fleet’s average truck age is just 2.5 years, and most feature premium comforts and safety technology built for life on the road.
+      </div>
+
+      <div class="equipment-grid">
+        <div class="equipment-item"><div class="icon-circle">❄️</div><strong>Refrigerator</strong></div>
+        <div class="equipment-item"><div class="icon-circle">🔌</div><strong>Power Inverter</strong></div>
+        <div class="equipment-item"><div class="icon-circle">🌡️</div><strong>Cabin Climate Control</strong></div>
+        <div class="equipment-item"><div class="icon-circle">🖥️</div><strong>Flat-Panel TV Mount</strong></div>
+        <div class="equipment-item"><div class="icon-circle">🛏️</div><strong>Ample Sleeper Room</strong></div>
+        <div class="equipment-item"><div class="icon-circle">🛡️</div><strong>State-of-the-Art Safety Technology</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="white">
+    <div class="container">
+      <h2 class="section-title center">We Are Bright Express Logistics LLC</h2>
+      <div class="section-text center">
+        We are the flatbed trucking company that continually invests in our team, our trucks and our technology. Your success is what we’re all about.
+      </div>
+      <div class="banner">
+        <div>
+          <small>Driver Success Story</small>
+          <h3>Flatbed Customer Success</h3>
+          <p>Built on strong support, reliable equipment, and a career path drivers can grow with.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="jobs" class="dark">
+    <div class="container jobs-grid">
+      <div>
+        <div class="eyebrow">Bright Express Logistics LLC Careers</div>
+        <h2 class="section-title" style="color:white;">Join Bright Express Logistics LLC Today</h2>
+        <div class="section-text">
+          Explore open Class A CDL opportunities, connect with a recruiter, and start building a career with better equipment and stronger support.
+        </div>
+      </div>
+
+      <div id="contact" class="card">
+        <div class="form-grid">
+          <input placeholder="First name" />
+          <input placeholder="Last name" />
+        </div>
+        <div class="form-grid">
+          <input placeholder="Phone" />
+          <input placeholder="Email" />
+        </div>
+        <textarea placeholder="Tell us about your experience" rows="6"></textarea>
+        <a class="btn btn-red" style="display:block; text-align:center; margin-top:14px;" href="mailto:info@brightexpresslogistics.com">Contact a Recruiter</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2026 Bright Express Logistics LLC. All rights reserved.
+  </footer>
+</body>
 </html>
