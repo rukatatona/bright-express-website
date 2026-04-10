@@ -87,7 +87,7 @@ export default function BrightExpressLogisticsLandingPage() {
                   Find CDL Jobs
                 </button>
                 <button className="border border-white px-8 py-5 text-base font-bold uppercase tracking-[0.16em] text-white transition hover:bg-white hover:text-[#16233d]">
-                  Contact a Recruiter
+                  Send Request
                 </button>
               </div>
             </div>
