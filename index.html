@@ -314,22 +314,39 @@
           <a class="btn btn-outline" href="#contact">Contact a Recruiter</a>
         </div>
       </div>
+<div class="card">
+  <h2>Apply Now</h2>
+  <p>Fill out the form below and we’ll get back to you as soon as possible.</p>
 
-      <div class="card">
-        <h2>Start Your Application</h2>
-        <p>Join a fleet that invests in drivers, equipment, and long-term success.</p>
-        <input placeholder="Full name" />
-        <input placeholder="Phone number" />
-        <input placeholder="Email address" />
-        <select>
-          <option>Experience level</option>
-          <option>New CDL holder</option>
-          <option>1–2 years</option>
-          <option>3+ years</option>
-        </select>
-        <a class="btn btn-red" style="display:block; text-align:center; margin-top:14px;" href="#contact">Apply Now</a>
-      </div>
-    </div>
+  <form>
+    <input name="fullName" placeholder="Full Name" required />
+    <input name="phone" type="tel" placeholder="Phone" required />
+    <input name="email" type="email" placeholder="Email" required />
+
+    <select name="cdlClass" required>
+      <option value="" disabled selected>CDL Class</option>
+      <option>CDL-A</option>
+      <option>CDL-B</option>
+      <option>Other</option>
+    </select>
+
+    <select name="experience" required>
+      <option value="" disabled selected>Years of Experience</option>
+      <option>Less than 1 year</option>
+      <option>1–3 years</option>
+      <option>3–5 years</option>
+      <option>5+ years</option>
+    </select>
+
+    <input name="references" placeholder="References" required />
+
+    <textarea name="aboutYourself" placeholder="Tell Us About Yourself" rows="6"></textarea>
+
+    <button type="submit" class="btn btn-red" style="display:block; width:100%; text-align:center; margin-top:14px;">
+      Submit Application
+    </button>
+  </form>
+</div>    
   </section>
 
   <section id="equipment" class="light">
